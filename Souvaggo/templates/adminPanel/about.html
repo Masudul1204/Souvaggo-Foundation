@@ -1,0 +1,23 @@
+{% extends "adminPanel/admin_base.html" %}
+{% load static %}
+{% block content %}
+<h1>This is About page</h1>
+<div class="insert_form" style="border: 1px solid black; padding: 30px; margin-top: 30px; border-radius: 5px;">
+    <form action="{% url 'about' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputNAME" class="form-label">Short Title</label>
+            <input type="text" class="form-control" name="short_title" id="exampleInputNAME" aria-describedby="nameHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputNAME" class="form-label">Sub Short Title</label>
+            <input type="text" class="form-control" name="sub_short_title" id="exampleInputNAME" aria-describedby="nameHelp">
+          </div>
+        <div class="mb-3">
+          <label for="exampleInputPIC" class="form-label">Picture</label>
+          <input type="file" class="form-control" name="picture" id="exampleInputPIC" aria-describedby="picHelp">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+{% endblock %}
