@@ -29,6 +29,7 @@
       <link rel="stylesheet" href="{% static 'admin/css/perfect-scrollbar.css' %}" />
       <!-- custom css -->
       <link rel="stylesheet" href="{% static 'admin/css/custom.css' %}" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -60,22 +61,50 @@
                   <h4>General</h4>
                   <ul class="list-unstyled components">
                      <li class="active">
-                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        <a href="{% url 'admin' %}"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                     </li>
+                     <li class="active">
+                        <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clock-o orange_color"></i> <span>Slide Page</span></a>
                         <ul class="collapse list-unstyled" id="dashboard">
                            <li>
-                              <a href="{% url 'admin' %}"> <span>Default Dashboard</span></a>
+                              <a href="{% url 'home' %}"> <span>Insert & Show</span></a>
+                           </li>
+                           <li>
+                              <a href="{% url 'about' %}"> <span>Sub Slider</span></a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond purple_color"></i> <span>About</span></a>
+                        <ul class="collapse list-unstyled" id="element">
+                           <li>
+                              <a href="{% url 'about_slider' %}"> <span>Insert & Show</span></a>
+                           </li>
+                           <li>
+                              <a href="{% url 'about_slider_another' %}"> <span>Sub About</span></a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Causes</span></a>
+                        <ul class="collapse list-unstyled" id="apps">
+                           <li>
+                           <a href="{% url 'causes' %}"> <span>Inser & Show</span></a>
                            </li>
                            <li>
                               <a href="dashboard_2.html"> <span>Dashboard style 2</span></a>
                            </li>
                         </ul>
                      </li>
-                     <li><a href="{% url 'home' %}"><i class="fa fa-clock-o orange_color"></i> <span>Slide Page</span></a></li>
-                     <li>
-                        <a href="{% url 'about' %}"><i class="fa fa-diamond purple_color"></i> <span>About Insert</span></a>
+                     <li class="active">
+                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Volunteer</span></a>
+                        <ul class="collapse list-unstyled" id="additional_page">
+                           <li>
+                              <a href="{% url 'volunteer' %}"> <span>Insert & Show </span></a>
+                           </li>
+            
+                        </ul>
                      </li>
-                     <li><a href="{% url 'causes' %}"><i class="fa fa-object-group blue2_color"></i> <span>Causes</span></a></li>
-                     <li><a href="{% url 'volunteer' %}"><i class="fa fa-briefcase blue1_color"></i> <span>Volunteer</span></a></li>
                      <li>
                         <a href="{% url 'news' %}"><i class="fa fa-clone yellow_color"></i> <span>News</span></a>
                      </li>

@@ -1,5 +1,54 @@
 {% extends "adminPanel/admin_base.html" %}
 {% load static %}
 {% block content %}
-<h1>This is Volunteer page</h1>
+<div class="row column_title">
+    <div class="col-md-12">
+       <div class="page_title">
+          <h2>Volunteer Page</h2>
+       </div>
+    </div>
+  </div>
+  <div class="insert_form" style="border: 1px solid black; padding: 30px; margin-top: 30px; border-radius: 5px;">
+   <form action="{% url 'volunteer' %}" method="POST" enctype="multipart/form-data">
+     {% csrf_token %}
+       <div class="mb-3">
+           <label for="exampleInputNAME" class="form-label">Volunteer Title</label>
+           <input type="text" class="form-control" name="volunteerTitle" id="exampleInputNAME" aria-describedby="nameHelp">
+         </div>
+         <div class="mb-3">
+           <label for="exampleInputNAME" class="form-label">Volunteer Description</label>
+           <input type="text" class="form-control" name="volunteerDescription" id="exampleInputNAME" aria-describedby="nameHelp">
+         </div>
+       <div class="mb-3">
+         <label for="exampleInputPIC" class="form-label">Volunteer Picture</label>
+         <input type="file" class="form-control" name="volunteerPicture" id="exampleInputPIC" aria-describedby="picHelp">
+       </div>
+       <button type="submit" class="btn btn-primary">Submit</button>
+   </form>
+     <table class="table table-dark table-striped">
+       <thead>
+         <tr>
+           <th scope="col">Title</th>
+           <th scope="col">Description</th>
+           <th scope="col">Images</th>
+           <th scope="col">Action</th>
+         </tr>
+       </thead>
+       <tbody>
+         {% for i in volunteer_slider_insert %}
+         <tr>
+           <td>{{ i.title }}</td>
+           <td style="width:400px">{{ i.Description }}</td>
+           <td>
+             <img src="/media/{{ i.picture }}" alt="" style="width: 100px; height: 100px;">
+           </td>
+           <td>
+             <a href="#" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a> ||
+           <a href="#" class="btn btn-danger"> <i class="fa-solid fa-trash-can"> </i></a>
+           </td>
+         </tr>
+         {% endfor %}
+       </tbody>
+     </table>
+</div>
 {% endblock %}
