@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from adminPanel.models import home_insert, about_slider, about_slider_another, causes_slider
 from adminPanel.models import sub_home_insert, volunteer_slider, news_slider
 from adminPanel.models import User
-from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth import login,logout,authenticate, update_session_auth_hash
 
 def index(request):
     if request.user.is_authenticated:
@@ -44,7 +44,22 @@ def logout_page(request):
     logout(request)
     return redirect('login_page')
 
+def change_pass(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            old_pass = request.POST.get('old_pass')
+            new_pass = request.POST.get('new_pass')
+            confirm_pass = request.POST.get('confirm_pass')
 
+            xyz = User.objects.get(id = request.user.id)
+            if xyz.check_password(old_pass) and new_pass == confirm_pass:
+                xyz.set_password(new_pass)
+                xyz.save()
+                update_session_auth_hash(request,xyz)
+                return redirect('logout_user')
+        return render(request, 'adminPanel/change-pass.html')
+    else:
+        return redirect('login_page')
 
 
 def home(request):
@@ -180,4 +195,10 @@ def News(request):
 
 def Contact(request):
     return render(request,'adminPanel/contact.html')
+
+def about_slider_delete(request, id):
+    about_slider_del = about_slider.objects.get(id=id)
+    about_slider_del.is_delete = True
+    about_slider_del.save()
+    return redirect('about_slider')
 

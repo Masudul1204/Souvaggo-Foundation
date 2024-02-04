@@ -1,0 +1,32 @@
+{% extends "adminPanel/admin_base.html" %}
+{% load static %}
+{% block content %}
+<div class="container"></div>
+<div class="row column_title">
+  <div class="col-md-12">
+     <div class="page_title">
+        <h2>Change Password</h2>
+     </div>
+  </div>
+</div>
+<div class="insert_form" style="border: 1px solid black; padding: 30px; margin-top: 30px; border-radius: 5px;">
+    <form action="{% url 'change_password' %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputNAME" class="form-label">Old Password</label>
+          <input type="password" class="form-control" name="old_pass" id="exampleInputNAME" aria-describedby="nameHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">New Password</label>
+          <input type="password" class="form-control" name="new_pass" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPIC" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" name="confirm_pass" id="exampleInputPIC" aria-describedby="picHelp">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    
+</div>
+{% endblock %}
